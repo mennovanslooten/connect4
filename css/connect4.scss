@@ -15,7 +15,7 @@ $cols: 7;
 	}
 }
 
-.controls {
+.controls, .message {
 	position: relative;
 	width: $cols * $coin_w;
 	height: $coin_h;
@@ -25,6 +25,12 @@ $cols: 7;
 	&.enabled {
 		visibility: visible;
 	}
+}
+
+.message {
+	visibility: visible;
+	line-height: $coin_h;
+	text-align: center;
 }
 
 .coins {

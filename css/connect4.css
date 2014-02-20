@@ -7,14 +7,19 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box; }
 
-.controls {
+.controls, .message {
   position: relative;
   width: 350px;
   height: 50px;
   background: #EEE;
   visibility: hidden; }
-  .controls.enabled {
+  .controls.enabled, .message.enabled {
     visibility: visible; }
+
+.message {
+  visibility: visible;
+  line-height: 50px;
+  text-align: center; }
 
 .coins {
   position: relative;

@@ -1,4 +1,5 @@
 C4.UI = function(_game, _options) {
+	var $board = $(_options.container);
 	var $controls;
 	var $coins;
 	var $rack;
@@ -21,7 +22,7 @@ C4.UI = function(_game, _options) {
 		$rack.append($controls);
 		$rack.append($coins);
 
-		$(_options.container).append($rack);
+		$board.append($rack);
 	}
 
 
@@ -56,7 +57,11 @@ C4.UI = function(_game, _options) {
 
 
 	_game.on('done', function(data) {
-		$controls.removeClass('enabled');
+		var $message = $('<div class="message"/>');
+		$rack.prepend($message);
+		$controls.remove();
+		var message = 'Draw';
+
 		showLastMove();
 
 		if (data && data.connected) {
@@ -66,9 +71,10 @@ C4.UI = function(_game, _options) {
 				var cell = $('#cell-' + col_index + '-' + row_index);
 				cell.addClass('connected');
 			}
-		} else {
-			//alert('draw');
+			message = data.winner.color + ' wins';
 		}
+
+		$message.text(message);
 	});
 
 
