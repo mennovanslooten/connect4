@@ -33,17 +33,12 @@ var C4 = function(_options) {
 		C4.Util(this);
 		C4.UI(this, _options);
 
-		// Determine type of game:
-		//  - no _options: human vs human
-		//  - _options.ai = 1 or 3 -> player 1 is AI
-		//  - _options.ai = 2 or 3 -> player 2 is AI
-		if (_options.ai) {
-			if (1 & _options.ai) {
-				C4.AI(this, this.current);
-			}
-			if (2 & _options.ai) {
-				C4.AI(this, this.current.opponent);
-			}
+		if (_options.ai_1_strength) {
+			C4.AI(this, this.current, _options.ai_1_strength);
+		}
+
+		if (_options.ai_2_strength) {
+			C4.AI(this, this.current.opponent, _options.ai_2_strength);
 		}
 
 		this.trigger('waitingForDrop');

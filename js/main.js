@@ -12,42 +12,23 @@
 
 (function() {
 
-	function startGame(options) {
+	function startGame(ai_1_strength, ai_2_strength) {
 		$('#board').empty();
 
-		options = $.extend(options, {
+		var game = new C4({
+			ai_1_strength: ai_1_strength,
+			ai_2_strength: ai_2_strength,
 			container: '#board'
 		});
-
-		var game = new C4(options);
 	}
 
 
-	function startPvp() {
-		startGame();
-	}
+	$('#players').on('change', function() {
+		var ai_1_strength = parseInt(this.player_1.value, 10);
+		var ai_2_strength = parseInt(this.player_2.value, 10);
 
-
-	function startPvc() {
-		startGame({ ai: 2 });
-	}
-
-
-	function startCvp() {
-		startGame({ ai: 1 });
-	}
-
-
-	function startCvc() {
-		startGame({ ai: 3 });
-	}
-
-
-	$('.pvp').on('click', startPvp);
-	$('.pvc').on('click', startPvc);
-	$('.cvp').on('click', startCvp);
-	$('.cvc').on('click', startCvc);
-
-	startPvc();
+		console.log('startGame(', ai_1_strength, ai_2_strength);
+		startGame(ai_1_strength, ai_2_strength);
+	}).trigger('change');
 })();
 

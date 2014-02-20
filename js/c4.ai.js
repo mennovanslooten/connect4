@@ -1,5 +1,5 @@
-C4.AI = function(_game, _player) {
-	var _depth = 5; // Max search depth for minimax
+C4.AI = function(_game, _player, _strength) {
+	var _depth = _strength; // Max search depth for minimax
 	var _rack = _game.rack;
 	var _columns = _rack.length;
 	var _rows = _rack[0].length;

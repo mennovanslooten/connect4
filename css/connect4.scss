@@ -4,6 +4,9 @@ $rows: 6;
 $cols: 7;
 
 .rack {
+	display: inline-block;
+	border: 2px solid black;
+
 	* {
 		box-sizing: border-box;
 		-ms-box-sizing: border-box;
@@ -16,7 +19,7 @@ $cols: 7;
 	position: relative;
 	width: $cols * $coin_w;
 	height: $coin_h;
-	background: navy;
+	background: #EEE;
 	visibility: hidden;
 
 	&.enabled {
@@ -28,7 +31,7 @@ $cols: 7;
 	position: relative;
 	width: $cols * $coin_w;
 	height: $rows * $coin_h;
-	background: black;
+	background: #BBB;
 	overflow: hidden;
 }
 
@@ -41,7 +44,7 @@ $cols: 7;
 	-moz-transition: top .2s ease-in;
 	-webkit-transition: top .2s ease-in;
 
-	&:after {
+	&:before {
 		content: "";
 		position: absolute;
 		left: 5px;
@@ -49,6 +52,21 @@ $cols: 7;
 		width: $coin_w - 10;
 		height: $coin_h - 10;
 		border-radius: 50%;
+		-moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+		-webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		left: 10px;
+		top: 10px;
+		width: $coin_w - 20;
+		height: $coin_h - 20;
+		border-radius: 50%;
+		background: rgba(0,0,0,0.2);
+		-moz-box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+		-webkit-box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
 	}
 
 	&.row-0 { top: 0; }
@@ -65,20 +83,26 @@ $cols: 7;
 	&.col-5 { left: 5 * $coin_w; }
 	&.col-6 { left: 6 * $coin_w; }
 
-	&.red:after {
+	&.red:before {
 		background: red;
 	}
 
-	&.yellow:after {
+	&.yellow:before {
 		background: yellow;
 	}
 
 	&.connected:after {
-		border: 2px solid white;
+		background: rgba(255,255,255,0.6);
 	}
 }
 
 .control {
+	opacity: 0.5;
 	top: 0;
+	cursor: pointer;
+
+	&:hover {
+		opacity: 1;
+	}
 }
 
