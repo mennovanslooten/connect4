@@ -15,7 +15,7 @@ C4.UI = function(game, options) {
 
 		$controls.on('click', '.control', function() {
 			var c = $(this).index();
-			game.sm.trigger('drop', { col_index : c });
+			game.trigger('drop', { col_index : c });
 		});
 
 		$rack.append($controls);
@@ -49,13 +49,13 @@ C4.UI = function(game, options) {
 	}
 
 
-	game.sm.when('waitingForDrop', updateControls);
+	game.on('waitingForDrop', updateControls);
 
 
-	game.sm.when('waitingForDrop', showLastMove);
+	game.on('waitingForDrop', showLastMove);
 
 
-	game.sm.when('done', function(data) {
+	game.on('done', function(data) {
 		$controls.removeClass('enabled');
 		showLastMove();
 

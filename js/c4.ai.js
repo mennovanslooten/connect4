@@ -14,7 +14,7 @@ C4.AI = function(game, player) {
 			setTimeout(function() {
 				var best = alphabeta(_depth, -Infinity, Infinity, _player);
 				var r = game.util.getDropRow(_best_col);
-				game.sm.trigger('drop', { col_index : _best_col });
+				game.trigger('drop', { col_index : _best_col });
 				_best_col = 0;
 			}, 500);
 		}
@@ -285,5 +285,5 @@ C4.AI = function(game, player) {
 	}
 
 
-	game.sm.when('waitingForDrop', findAndPlayMove);
+	game.on('waitingForDrop', findAndPlayMove);
 };
