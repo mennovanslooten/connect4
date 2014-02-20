@@ -4,10 +4,16 @@
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1, width=device-width, user-scalable=no">
 		<meta charset="utf-8">
 		<meta name="author" content="@mennovanslooten">
-		<script src="js/jquery-1.7.2rc1.js"></script>
+		<script src="js/jquery-2.1.0.min.js"></script>
 		<link href="css/connect4.css" rel="stylesheet">
 
 		<style type="text/css">
+		body {
+			font-family: sans-serif;
+			background: white;
+			color: #333;
+		}
+
 		#players {
 			padding: 10px;
 
@@ -20,7 +26,7 @@
 	
 		<form id="players">
 			<label>
-				Player 1:
+				Yellow:
 				<select name="player_1">
 					<option value="0">Human</option>
 					<option value="1">Easy AI</option>
@@ -31,7 +37,7 @@
 				</select>
 			</label>
 			<label>
-				Player 2:
+				Red:
 				<select name="player_2">
 					<option value="0">Human</option>
 					<option value="1">Easy AI</option>

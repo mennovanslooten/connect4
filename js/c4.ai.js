@@ -34,6 +34,7 @@ C4.AI = function(_game, _player, _strength) {
 			var scores = [];
 
 			// For each column calculate the max possible score
+			// (player tries to maximize)
 			for (var c = 0; c < _columns; c++) {
 				var r = _game.util.getDropRow(c);
 
@@ -68,7 +69,7 @@ C4.AI = function(_game, _player, _strength) {
 					if (score) last_valid = i;
 				}
 
-				// All moves by AI will lead to loss
+				// All moves by player will lead to loss
 				// Just pick a valid column
 				if (max_score === -Infinity) {
 					_best_col = last_valid;
@@ -77,14 +78,26 @@ C4.AI = function(_game, _player, _strength) {
 
 			return alpha;
 		} else {
+			// For each column calculate the min possible score
+			// (opponent tries to minimize)
 			for (var c = 0; c < _columns; c++) {
 				var r = _game.util.getDropRow(c);
+				// This column is already full
 				if (r === -1) continue;
 
+				// Temporarily store move
 				_rack[c][r] = player;
+
+				// Recursively calculate the best result this move could have
+				// for oppponent
 				beta = Math.min(beta, alphabeta(depth - 1, alpha, beta, player.opponent));
+
+				// Undo the move
 				delete _rack[c][r];
 
+				// If the opponent's score for this column is <= to our player's
+				// maximum there's no need to further explore this branch: it
+				// would never lead to a better score
 				if (beta <= alpha) {
 					break;
 				}
@@ -95,11 +108,13 @@ C4.AI = function(_game, _player, _strength) {
 
 
 	/* ################################################################################
-	UTILITIES
+		UTILITIES
 	################################################################################ */
 
 
 	function evaluateBoard(player) {
+		// Some pre-calculated values for each rack position, based on the
+		// number of possible 4-in-a-rows a position could theoretically be part of
 		var values = [
 			[ 3,  4,   5,  5,  4,  3 ],
 			[ 4,  6,   8,  8,  6,  4 ],
@@ -203,7 +218,7 @@ C4.AI = function(_game, _player, _strength) {
 
 
 	/* ################################################################################
-	VIEWS
+		VIEWS
 	################################################################################ */
 
 	function getEastView(player) {

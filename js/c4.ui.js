@@ -21,7 +21,6 @@ C4.UI = function(_game, _options) {
 
 		$rack.append($controls);
 		$rack.append($coins);
-
 		$board.append($rack);
 	}
 
