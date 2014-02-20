@@ -1,0 +1,84 @@
+$coin_w: 50px;
+$coin_h: 50px;
+$rows: 6;
+$cols: 7;
+
+.rack {
+	* {
+		box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+	}
+}
+
+.controls {
+	position: relative;
+	width: $cols * $coin_w;
+	height: $coin_h;
+	background: navy;
+	visibility: hidden;
+
+	&.enabled {
+		visibility: visible;
+	}
+}
+
+.coins {
+	position: relative;
+	width: $cols * $coin_w;
+	height: $rows * $coin_h;
+	background: black;
+	overflow: hidden;
+}
+
+.coin, .control {
+	width: $coin_w;
+	height: $coin_h;
+	position: absolute;
+	left: 0;
+	top: -1 * $coin_h;
+	-moz-transition: top .2s ease-in;
+	-webkit-transition: top .2s ease-in;
+
+	&:after {
+		content: "";
+		position: absolute;
+		left: 5px;
+		top: 5px;
+		width: $coin_w - 10;
+		height: $coin_h - 10;
+		border-radius: 50%;
+	}
+
+	&.row-0 { top: 0; }
+	&.row-1 { top: 1 * $coin_h; }
+	&.row-2 { top: 2 * $coin_h; }
+	&.row-3 { top: 3 * $coin_h; }
+	&.row-4 { top: 4 * $coin_h; }
+	&.row-5 { top: 5 * $coin_h; }
+
+	&.col-1 { left: 1 * $coin_w; }
+	&.col-2 { left: 2 * $coin_w; }
+	&.col-3 { left: 3 * $coin_w; }
+	&.col-4 { left: 4 * $coin_w; }
+	&.col-5 { left: 5 * $coin_w; }
+	&.col-6 { left: 6 * $coin_w; }
+
+	&.red:after {
+		background: red;
+	}
+
+	&.yellow:after {
+		background: yellow;
+	}
+
+	&.connected:after {
+		border: 2px solid white;
+	}
+}
+
+.control {
+	top: 0;
+}
+

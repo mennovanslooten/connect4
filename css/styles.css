@@ -1,0 +1,71 @@
+.rack * {
+  box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+
+.controls {
+  position: relative;
+  width: 350px;
+  height: 50px;
+  background: navy;
+  visibility: hidden; }
+  .controls.enabled {
+    visibility: visible; }
+
+.coins {
+  position: relative;
+  width: 350px;
+  height: 300px;
+  background: black;
+  overflow: hidden; }
+
+.coin, .control {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 0;
+  top: -50px;
+  -moz-transition: top .2s ease-in;
+  -webkit-transition: top .2s ease-in; }
+  .coin:after, .control:after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; }
+  .coin.row-0, .control.row-0 {
+    top: 0; }
+  .coin.row-1, .control.row-1 {
+    top: 50px; }
+  .coin.row-2, .control.row-2 {
+    top: 100px; }
+  .coin.row-3, .control.row-3 {
+    top: 150px; }
+  .coin.row-4, .control.row-4 {
+    top: 200px; }
+  .coin.row-5, .control.row-5 {
+    top: 250px; }
+  .coin.col-1, .control.col-1 {
+    left: 50px; }
+  .coin.col-2, .control.col-2 {
+    left: 100px; }
+  .coin.col-3, .control.col-3 {
+    left: 150px; }
+  .coin.col-4, .control.col-4 {
+    left: 200px; }
+  .coin.col-5, .control.col-5 {
+    left: 250px; }
+  .coin.col-6, .control.col-6 {
+    left: 300px; }
+  .coin.red:after, .control.red:after {
+    background: red; }
+  .coin.yellow:after, .control.yellow:after {
+    background: yellow; }
+  .coin.connected:after, .control.connected:after {
+    border: 2px solid white; }
+
+.control {
+  top: 0; }
