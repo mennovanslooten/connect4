@@ -1,20 +1,19 @@
-C4.AI = function(game, player) {
+C4.AI = function(_game, _player) {
 	var _depth = 5; // Max search depth for minimax
-	var _rack = game.rack;
+	var _rack = _game.rack;
 	var _columns = _rack.length;
 	var _rows = _rack[0].length;
-	var _player = player;
 	var _best_col = 0;
-	player.human = false;
+	_player.human = false;
 
 
 	function findAndPlayMove() {
-		if (game.current === _player) {
+		if (_game.current === _player) {
 			// Give the previous move's drop animation some time to finish
 			setTimeout(function() {
 				var best = alphabeta(_depth, -Infinity, Infinity, _player);
-				var r = game.util.getDropRow(_best_col);
-				game.trigger('drop', { col_index : _best_col });
+				var r = _game.util.getDropRow(_best_col);
+				_game.trigger('drop', { col_index : _best_col });
 				_best_col = 0;
 			}, 500);
 		}
@@ -36,7 +35,7 @@ C4.AI = function(game, player) {
 
 			// For each column calculate the max possible score
 			for (var c = 0; c < _columns; c++) {
-				var r = game.util.getDropRow(c);
+				var r = _game.util.getDropRow(c);
 
 				// This column is already full of coins
 				if (r === -1) continue;
@@ -79,7 +78,7 @@ C4.AI = function(game, player) {
 			return alpha;
 		} else {
 			for (var c = 0; c < _columns; c++) {
-				var r = game.util.getDropRow(c);
+				var r = _game.util.getDropRow(c);
 				if (r === -1) continue;
 
 				_rack[c][r] = player;
@@ -285,5 +284,5 @@ C4.AI = function(game, player) {
 	}
 
 
-	game.on('waitingForDrop', findAndPlayMove);
+	_game.on('waitingForDrop', findAndPlayMove);
 };

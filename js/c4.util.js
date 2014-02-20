@@ -1,6 +1,6 @@
-C4.Util = function(game) {
+C4.Util = function(_game) {
     var _util = {};
-    var _rack = game.rack;
+    var _rack = _game.rack;
     var _columns = _rack.length;
     var _rows = _rack[0].length;
 
@@ -37,7 +37,7 @@ C4.Util = function(game) {
     function walkRack(callback) {
         for (var c = 0; c < _columns; c++) {
             for (var r = 0; r < _rows; r++) {
-                var player = game.rack[c][r];
+                var player = _game.rack[c][r];
                 if (player && player.color) {
                     callback(player, c, r);
                 }
@@ -56,7 +56,7 @@ C4.Util = function(game) {
 
 
 
-    game.util = {
+    _game.util = {
         findConnected: findConnected,
         getDropRow: getDropRow
     };

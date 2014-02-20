@@ -1,4 +1,4 @@
-var C4 = function(options) {
+var C4 = function(_options) {
 	var _game = this;
 	var _columns = 7;
 	var _rows = 6;
@@ -19,7 +19,7 @@ var C4 = function(options) {
 	}
 
 
-	this.init = function(options) {
+	this.init = function() {
 		for (var c = 0; c < _columns; c++) {
 			this.rack[c] = new Array(_rows);
 		}
@@ -31,17 +31,17 @@ var C4 = function(options) {
 		this.current = player1;
 
 		C4.Util(this);
-		C4.UI(this, options);
+		C4.UI(this, _options);
 
 		// Determine type of game:
-		//  - no options: human vs human
-		//  - options.ai = 1 or 3 -> player 1 is AI
-		//  - options.ai = 2 or 3 -> player 2 is AI
-		if (options.ai) {
-			if (1 & options.ai) {
+		//  - no _options: human vs human
+		//  - _options.ai = 1 or 3 -> player 1 is AI
+		//  - _options.ai = 2 or 3 -> player 2 is AI
+		if (_options.ai) {
+			if (1 & _options.ai) {
 				C4.AI(this, this.current);
 			}
-			if (2 & options.ai) {
+			if (2 & _options.ai) {
 				C4.AI(this, this.current.opponent);
 			}
 		}
@@ -67,6 +67,7 @@ var C4 = function(options) {
 			handler(data);
 		});
 	};
+
 
 	this.on('drop', function(data) {
 		if (!data) return;
@@ -96,5 +97,5 @@ var C4 = function(options) {
 		}
 	});
 
-	this.init(options);
+	this.init();
 };

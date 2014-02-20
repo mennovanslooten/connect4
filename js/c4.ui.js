@@ -1,4 +1,4 @@
-C4.UI = function(game, options) {
+C4.UI = function(_game, _options) {
 	var $controls;
 	var $coins;
 	var $rack;
@@ -9,34 +9,34 @@ C4.UI = function(game, options) {
 		$coins = $('<div class="coins"></div>');
 		$controls = $('<div class="controls"></div>');
 
-		for (var c = 0; c < game.rack.length; c++) {
+		for (var c = 0; c < _game.rack.length; c++) {
 			$controls.append('<div class="control col-' + c + '"/>');
 		}
 
 		$controls.on('click', '.control', function() {
 			var c = $(this).index();
-			game.trigger('drop', { col_index : c });
+			_game.trigger('drop', { col_index : c });
 		});
 
 		$rack.append($controls);
 		$rack.append($coins);
 
-		$(options.container).append($rack);
+		$(_options.container).append($rack);
 	}
 
 
 	function updateControls() {
-		$controls.children().removeClass(game.current.opponent.color);
-		$controls.children().addClass(game.current.color);
-		$controls.toggleClass('enabled', game.current.human);
+		$controls.children().removeClass(_game.current.opponent.color);
+		$controls.children().addClass(_game.current.color);
+		$controls.toggleClass('enabled', _game.current.human);
 	}
 
 
 	function showLastMove() {
-		if (!game.moves.length) {
+		if (!_game.moves.length) {
 			return;
 		}
-		var move = game.moves[game.moves.length - 1];
+		var move = _game.moves[_game.moves.length - 1];
 		var c = move.col_index;
 		var r = move.row_index;
 		var coin = $('<div class="coin col-' + c + ' ' + move.player.color + '" id="cell-' + c + '-' + r + '"/>');
@@ -49,13 +49,13 @@ C4.UI = function(game, options) {
 	}
 
 
-	game.on('waitingForDrop', updateControls);
+	_game.on('waitingForDrop', updateControls);
 
 
-	game.on('waitingForDrop', showLastMove);
+	_game.on('waitingForDrop', showLastMove);
 
 
-	game.on('done', function(data) {
+	_game.on('done', function(data) {
 		$controls.removeClass('enabled');
 		showLastMove();
 

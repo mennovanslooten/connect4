@@ -2,8 +2,9 @@
 
 	TODO:
 	[ ] Clean up code
-		[ ] Spaces2Tabs
-		[ ] Do we need a state machine?
+		[ ] standardize style/notation
+		[X] Spaces2Tabs
+		[X] Do we need a state machine?
 	[X] Remove gfx
 	[ ] Remove jQuery
 	[X] Move as much position & animation code from JS to CSS
