@@ -1,5 +1,4 @@
 C4.AI = function(_game, _player, _strength) {
-	var _depth = _strength; // Max search depth for minimax
 	var _rack = _game.rack;
 	var _columns = _rack.length;
 	var _rows = _rack[0].length;
@@ -11,7 +10,7 @@ C4.AI = function(_game, _player, _strength) {
 		if (_game.current === _player) {
 			// Give the previous move's drop animation some time to finish
 			setTimeout(function() {
-				var best = alphabeta(_depth, -Infinity, Infinity, _player);
+				var best = alphabeta(_strength, -Infinity, Infinity, _player);
 				var r = _game.util.getDropRow(_best_col);
 				_game.trigger('drop', { col_index : _best_col });
 				_best_col = 0;
@@ -55,7 +54,7 @@ C4.AI = function(_game, _player, _strength) {
 				if (beta <= alpha) break;
 			}
 
-			if (depth === _depth) {
+			if (depth === _strength) {
 				var max_score = -Infinity;
 				var last_valid = null;
 				for (var i = 0; i < scores.length; i++) {
@@ -138,7 +137,6 @@ C4.AI = function(_game, _player, _strength) {
 				rx: /_#{2}_/g,
 				value: 20
 			},
-
 			'3 connected, empty on the left': {
 				rx: /_#{3}/g,
 				value: 50
